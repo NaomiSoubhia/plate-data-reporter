@@ -165,3 +165,27 @@ def calculateSalesReport(allPlates, allIssued, allReturned, allSales, allRecepti
         report.append([salesperson, count, days, hours, minutes, seconds])
     return report
 
+# Generate outstanding plates report (TXT)
+def generateOutstandingReport(allPlates, allIssued, allReturned, allSales):
+    path = get_report_path("outstanding_report.txt")
+    with open(path, "w") as file:
+        file.write("Outstanding Plates Report\n")
+        file.write("=========================\n\n")
+        found = False
+        for i in range(len(allPlates)):
+            plate = allPlates[i]
+            issued = allIssued[i]
+            returned = allReturned[i]
+            salesperson = allSales[i]
+            if returned is None:
+                found = True
+                file.write("Plate: " + plate + "\n")
+                file.write("Issued by: " + salesperson + "\n")
+                file.write("Issued Date:" + str(issued) + "\n")
+                file.write("Status: NOT RETURNED\n")
+                file.write("Report generated at:" + str(datetime.now()) + "\n")
+                file.write("-------------------------\n")
+        if not found:
+            file.write("No outstanding plates found.\n")
+    print("Outstanding report generated successfully!")
+
