@@ -99,3 +99,8 @@ def filterValidPlates(allPlates, allIssued, allReturned, allSales, allReceptioni
     return vp, vi, vr, vs, vrx
 
 
+def createReport():
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.append(["Plate", "Uses", "Days", "Hours", "Minutes", "Seconds"])
+    return ws, wb
