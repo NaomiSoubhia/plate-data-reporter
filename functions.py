@@ -83,5 +83,19 @@ def isValidPlate(plate):
     )
 
 
+def filterValidPlates(allPlates, allIssued, allReturned, allSales, allReceptionist):
+    valid = []
+
+    vp, vi, vr, vs, vrx = [], [], [], [], []
+
+    for i in range(len(allPlates)):
+        if isValidPlate(allPlates[i]):
+            vp.append(allPlates[i])
+            vi.append(allIssued[i])
+            vr.append(allReturned[i])
+            vs.append(allSales[i])
+            vrx.append(allReceptionist[i])
+
+    return vp, vi, vr, vs, vrx
 
 
