@@ -18,6 +18,44 @@ def main():
             print("Processing spreadsheets...")
             files = getFilePath()
 
+        elif userOption == 2:
+
+            if not files:
+                print("Please load spreadsheets first.")
+                continue
+
+            allPlates = []
+            allIssued = []
+            allReturned = []
+            allSales = []
+            allReceptionist = []
+
+            allPlates, allIssued, allReturned, allSales, allReceptionist = loadData(
+                files,
+                allPlates,
+                allIssued,
+                allReturned,
+                allSales,
+                allReceptionist
+            )
+
+            report = calculatePlateReport(
+                allPlates,
+                allIssued,
+                allReturned
+            )
+
+            sheetReport, workbookReport = createReport()
+
+            saveReport(
+                sheetReport,
+                workbookReport,
+                report,
+                "plate"
+            )
+
+            print("Plate report generated.")
+
         elif userOption == 5:
             print("Goodbye!")
 
