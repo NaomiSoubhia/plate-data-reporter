@@ -104,3 +104,20 @@ def createReport():
     ws = wb.active
     ws.append(["Plate", "Uses", "Days", "Hours", "Minutes", "Seconds"])
     return ws, wb
+
+
+def calculateTime(i, r):
+    if not i or not r:
+        return 0
+    diff = r - i
+    return diff.days * 86400 + diff.seconds
+
+
+def convertTime(s):
+    d = s // 86400
+    s %= 86400
+    h = s // 3600
+    s %= 3600
+    m = s // 60
+    s %= 60
+    return d,h,m,s
