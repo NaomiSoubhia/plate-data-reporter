@@ -121,3 +121,47 @@ def convertTime(s):
     m = s // 60
     s %= 60
     return d,h,m,s
+
+# Generate plate report
+def calculatePlateReport(allPlates, allIssued, allReturned):
+    report = []
+    printed = []
+
+    for i in range(len(allPlates)):
+        plate = allPlates[i]
+        if plate in printed:
+            continue
+        printed.append(plate)
+        count = 0
+        total_seconds = 0
+        for j in range(len(allPlates)):
+            if allPlates[j] == plate:
+                count += 1
+                issued = allIssued[j]
+                returned = allReturned[j]
+                total_seconds += calculateTime(issued, returned)
+        days, hours, minutes, seconds = convertTime(total_seconds)
+        report.append([plate, count, days, hours, minutes, seconds])
+    return report
+
+# Generate sales report
+def calculateSalesReport(allPlates, allIssued, allReturned, allSales, allReceptionist):
+    report = []
+    processed = []
+    for i in range(len(allSales)):
+        salesperson = allSales[i]
+        if salesperson in processed:
+            continue
+        processed.append(salesperson)
+        count = 0
+        total_seconds = 0
+        for j in range(len(allSales)):
+            if allSales[j] == salesperson:
+                count += 1
+                issued = allIssued[j]
+                returned = allReturned[j]
+                total_seconds += calculateTime(issued, returned)
+        days, hours, minutes, seconds = convertTime(total_seconds)
+        report.append([salesperson, count, days, hours, minutes, seconds])
+    return report
+
