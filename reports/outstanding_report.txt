@@ -1,0 +1,15 @@
+Outstanding Plates Report
+=========================
+
+Plate: ABC128
+Issued by: Mike
+Issued Date:2026-03-27 15:00:00
+Status: NOT RETURNED
+Report generated at:2026-06-09 10:33:57.392537
+-------------------------
+Plate: ABC288
+Issued by: Victor
+Issued Date:2026-03-27 12:00:00
+Status: NOT RETURNED
+Report generated at:2026-06-09 10:33:57.392552
+-------------------------

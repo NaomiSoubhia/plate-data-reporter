@@ -83,20 +83,29 @@ def isValidPlate(plate):
     )
 
 
+# Filter valid plates and keep data aligned
 def filterValidPlates(allPlates, allIssued, allReturned, allSales, allReceptionist):
-    valid = []
-
-    vp, vi, vr, vs, vrx = [], [], [], [], []
+    validPlates = []
+    validIssued = []
+    validReturned = []
+    validSales = []
+    validReceptionist = []
+    invalidPlates = []
 
     for i in range(len(allPlates)):
         if isValidPlate(allPlates[i]):
-            vp.append(allPlates[i])
-            vi.append(allIssued[i])
-            vr.append(allReturned[i])
-            vs.append(allSales[i])
-            vrx.append(allReceptionist[i])
+            validPlates.append(allPlates[i])
+            validIssued.append(allIssued[i])
+            validReturned.append(allReturned[i])
+            validSales.append(allSales[i])
+            validReceptionist.append(allReceptionist[i])
+        else:
+            if allPlates[i] not in invalidPlates:
+                invalidPlates.append(allPlates[i])
 
-    return vp, vi, vr, vs, vrx
+    print("Invalid Plates:")
+    print(invalidPlates)
+    return validPlates, validIssued, validReturned, validSales, validReceptionist, invalidPlates
 
 
 def createReport():
@@ -229,3 +238,38 @@ def prepareData(files):
         allSales,
         allReceptionist
     )
+
+
+# Remove duplicate records
+def removeDuplicates(allPlates, allIssued, allReturned, allSales, allReceptionist):
+    i = 0
+    while i < len(allPlates):
+        j = i + 1
+        while j < len(allPlates):
+            if (allPlates[i] == allPlates[j] and
+                allIssued[i] == allIssued[j] and
+                allReturned[i] == allReturned[j] and
+                allSales[i] == allSales[j] and
+                allReceptionist[i] == allReceptionist[j]):
+                del allPlates[j]
+                del allIssued[j]
+                del allReturned[j]
+                del allSales[j]
+                del allReceptionist[j]
+            else:
+                j += 1
+        i += 1
+    return allPlates, allIssued, allReturned, allSales, allReceptionist
+
+
+# Save Excel report
+def saveReport(sheetReport, workbookReport, report, report_type):
+    for row in report:
+        sheetReport.append(row)
+    if report_type == "plate":
+        path = get_report_path("plate_report.xlsx")
+        workbookReport.save(path)
+    elif report_type == "sales":
+        path = get_report_path("sale_report.xlsx")
+        workbookReport.save(path)
+        print("Report exported successfully!")
