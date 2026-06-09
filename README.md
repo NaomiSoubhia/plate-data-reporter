@@ -126,6 +126,10 @@ docker compose up --build
 
 ---
 
+## CI/CD
+
+GitLab CI validates Python files automatically and builds the Docker image.
+
 ## Example Workflow
 
 1. Load a spreadsheet containing vehicle records.
