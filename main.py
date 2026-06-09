@@ -97,6 +97,36 @@ def main():
 
             print("Sales report generated.")
 
+        elif userOption == 4:
+
+            if not files:
+                print("Please load spreadsheets first.")
+                continue
+
+            allPlates = []
+            allIssued = []
+            allReturned = []
+            allSales = []
+            allReceptionist = []
+
+            allPlates, allIssued, allReturned, allSales, allReceptionist = loadData(
+                files,
+                allPlates,
+                allIssued,
+                allReturned,
+                allSales,
+                allReceptionist
+            )
+
+            generateOutstandingReport(
+                allPlates,
+                allIssued,
+                allReturned,
+                allSales
+            )
+
+            print("Outstanding report generated.")
+
         elif userOption == 5:
             print("Goodbye!")
 
