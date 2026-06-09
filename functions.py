@@ -189,3 +189,43 @@ def generateOutstandingReport(allPlates, allIssued, allReturned, allSales):
             file.write("No outstanding plates found.\n")
     print("Outstanding report generated successfully!")
 
+
+def prepareData(files):
+    allPlates = []
+    allIssued = []
+    allReturned = []
+    allSales = []
+    allReceptionist = []
+
+    allPlates, allIssued, allReturned, allSales, allReceptionist = loadData(
+        files,
+        allPlates,
+        allIssued,
+        allReturned,
+        allSales,
+        allReceptionist
+    )
+
+    allPlates, allIssued, allReturned, allSales, allReceptionist = removeDuplicates(
+        allPlates,
+        allIssued,
+        allReturned,
+        allSales,
+        allReceptionist
+    )
+
+    allPlates, allIssued, allReturned, allSales, allReceptionist, invalidPlates = filterValidPlates(
+        allPlates,
+        allIssued,
+        allReturned,
+        allSales,
+        allReceptionist
+    )
+
+    return (
+        allPlates,
+        allIssued,
+        allReturned,
+        allSales,
+        allReceptionist
+    )

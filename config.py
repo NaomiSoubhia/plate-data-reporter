@@ -1,11 +1,12 @@
 # config.py
-import os from pathlib
-import Path
+from pathlib import Path
+import os
 
 # Directory for reports
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).parent
 REPORT_DIR = BASE_DIR / "reports"
 
+REPORT_DIR.mkdir(parents=True, exist_ok=True)
 # Report filenames
 
 PLATE_REPORT_FILE = "plate_report.xlsx"

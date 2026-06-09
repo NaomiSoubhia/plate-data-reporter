@@ -30,30 +30,7 @@ def main():
             allSales = []
             allReceptionist = []
 
-            allPlates, allIssued, allReturned, allSales, allReceptionist = loadData(
-                files,
-                allPlates,
-                allIssued,
-                allReturned,
-                allSales,
-                allReceptionist
-            )
-
-            allPlates, allIssued, allReturned, allSales, allReceptionist = removeDuplicates(
-                allPlates,
-                allIssued,
-                allReturned,
-                allSales,
-                allReceptionist
-            )
-
-            allPlates, allIssued, allReturned, allSales, allReceptionist, invalidPlates = filterValidPlates(
-                allPlates,
-                allIssued,
-                allReturned,
-                allSales,
-                allReceptionist
-            )
+            allPlates, allIssued, allReturned, allSales, allReceptionist = prepareData(files)
     
             report = calculatePlateReport(
                 allPlates,
@@ -86,30 +63,7 @@ def main():
             allReceptionist = []
 
 
-            allPlates, allIssued, allReturned, allSales, allReceptionist = loadData(
-                files,
-                allPlates,
-                allIssued,
-                allReturned,
-                allSales,
-                allReceptionist
-            )
-
-            allPlates, allIssued, allReturned, allSales, allReceptionist = removeDuplicates(
-                allPlates,
-                allIssued,
-                allReturned,
-                allSales,
-                allReceptionist
-            )
-
-            allPlates, allIssued, allReturned, allSales, allReceptionist, invalidPlates = filterValidPlates(
-                allPlates,
-                allIssued,
-                allReturned,
-                allSales,
-                allReceptionist
-            )
+            allPlates, allIssued, allReturned, allSales, allReceptionist = prepareData(files)
     
 
             report = calculateSalesReport(
@@ -144,31 +98,7 @@ def main():
             allReceptionist = []
 
 
-            allPlates, allIssued, allReturned, allSales, allReceptionist = loadData(
-                files,
-                allPlates,
-                allIssued,
-                allReturned,
-                allSales,
-                allReceptionist
-            )
-
-            allPlates, allIssued, allReturned, allSales, allReceptionist = removeDuplicates(
-                allPlates,
-                allIssued,
-                allReturned,
-                allSales,
-                allReceptionist
-            )
-
-            allPlates, allIssued, allReturned, allSales, allReceptionist, invalidPlates = filterValidPlates(
-                allPlates,
-                allIssued,
-                allReturned,
-                allSales,
-                allReceptionist
-            )
-    
+            allPlates, allIssued, allReturned, allSales, allReceptionist = prepareData(files)
 
             generateOutstandingReport(
                 allPlates,
