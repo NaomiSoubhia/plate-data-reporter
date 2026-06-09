@@ -39,6 +39,22 @@ def main():
                 allReceptionist
             )
 
+            allPlates, allIssued, allReturned, allSales, allReceptionist = removeDuplicates(
+                allPlates,
+                allIssued,
+                allReturned,
+                allSales,
+                allReceptionist
+            )
+
+            allPlates, allIssued, allReturned, allSales, allReceptionist, invalidPlates = filterValidPlates(
+                allPlates,
+                allIssued,
+                allReturned,
+                allSales,
+                allReceptionist
+            )
+    
             report = calculatePlateReport(
                 allPlates,
                 allIssued,
@@ -69,6 +85,7 @@ def main():
             allSales = []
             allReceptionist = []
 
+
             allPlates, allIssued, allReturned, allSales, allReceptionist = loadData(
                 files,
                 allPlates,
@@ -77,6 +94,23 @@ def main():
                 allSales,
                 allReceptionist
             )
+
+            allPlates, allIssued, allReturned, allSales, allReceptionist = removeDuplicates(
+                allPlates,
+                allIssued,
+                allReturned,
+                allSales,
+                allReceptionist
+            )
+
+            allPlates, allIssued, allReturned, allSales, allReceptionist, invalidPlates = filterValidPlates(
+                allPlates,
+                allIssued,
+                allReturned,
+                allSales,
+                allReceptionist
+            )
+    
 
             report = calculateSalesReport(
                 allPlates,
@@ -109,6 +143,7 @@ def main():
             allSales = []
             allReceptionist = []
 
+
             allPlates, allIssued, allReturned, allSales, allReceptionist = loadData(
                 files,
                 allPlates,
@@ -117,6 +152,23 @@ def main():
                 allSales,
                 allReceptionist
             )
+
+            allPlates, allIssued, allReturned, allSales, allReceptionist = removeDuplicates(
+                allPlates,
+                allIssued,
+                allReturned,
+                allSales,
+                allReceptionist
+            )
+
+            allPlates, allIssued, allReturned, allSales, allReceptionist, invalidPlates = filterValidPlates(
+                allPlates,
+                allIssued,
+                allReturned,
+                allSales,
+                allReceptionist
+            )
+    
 
             generateOutstandingReport(
                 allPlates,
