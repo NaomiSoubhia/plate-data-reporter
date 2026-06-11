@@ -2,7 +2,6 @@ stages:
   - validate
 
 validate:
-  stage: validate
   image: python:3.11
 
   before_script:
