@@ -128,6 +128,8 @@ docker compose up --build
 
 ## CI/CD
 
+[![pipeline status](https://gitlab.com/NaomiSoubhia-group/plate-data-reporter/badges/main/pipeline.svg)](https://gitlab.com/NaomiSoubhia-group/plate-data-reporter/-/commits/main)
+
 GitLab CI validates Python files automatically and builds the Docker image.
 
 ## Example Workflow
