@@ -1,7 +1,9 @@
 stages:
   - validate
+  - test
 
 validate:
+  stage: validate
   image: python:3.11
 
   before_script:
@@ -9,3 +11,13 @@ validate:
 
   script:
     - python -m compileall .
+
+unit-tests:
+  stage: test
+  image: python:3.11
+
+  before_script:
+    - pip install -r requirements.txt
+
+  script:
+    - pytest
