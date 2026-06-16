@@ -1,0 +1,19 @@
+name: Sync to GitLab
+
+on:
+  push:
+    branches: [ "main", "feature/testing" ] # Add branches you want to sync
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Essential to pull all history and branches
+
+      - name: Push to GitLab Mirror
+        run: |
+          git remote add gitlab https://oauth2:${{ secrets.GITLAB_TOKEN }}@gitlab.com/naomisoubhia-group/plate-data-reporter.git
+          git push gitlab --all --force
