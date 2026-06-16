@@ -2,7 +2,7 @@ name: Sync to GitLab
 
 on:
   push:
-    branches: [ "main", "feature/testing" ] # Add branches you want to sync
+    branches: [ "main", "feature/testing", "develop"] 
 
 jobs:
   sync:
