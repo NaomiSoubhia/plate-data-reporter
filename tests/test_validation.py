@@ -1,13 +1,16 @@
 from functions import isValidPlate
 
 def test_valid_plate():
-    assert isValidPlate("ABC123") == True
+    assert isValidPlate("ABC123")
+
 
 def test_invalid_plate_letters():
-    assert isValidPlate("AB123") == False
+    assert not isValidPlate("AB123")
+
 
 def test_invalid_plate_numbers():
-    assert isValidPlate("ABC12") == False
+    assert not isValidPlate("ABC12")
+
 
 def test_empty_plate():
-    assert isValidPlate("") == False
+    assert not isValidPlate("")

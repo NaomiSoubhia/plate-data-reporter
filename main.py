@@ -1,5 +1,15 @@
-from functions import *
-from config import *
+import pyinputplus as pyip
+
+from functions import (
+    displayMenu,
+    getFilePath,
+    prepareData,
+    calculatePlateReport,
+    calculateSalesReport,
+    createReport,
+    saveReport,
+    generateOutstandingReport,
+)
 
 def main():
     userOption = 0
