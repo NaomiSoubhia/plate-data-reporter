@@ -9,7 +9,8 @@ from config import get_report_path
 
 
 def displayMenu():
-    print("\n1-Load Files\n2-Plate Report\n3-Sales Report\n4-Outstanding Report\n5-Exit")
+    print("\n1-Load Files\n2-Plate Report\n3-Sales Report\n" +
+          "4-Outstanding Report\n5-Exit")
 
 
 def getFilePath():
@@ -34,6 +35,7 @@ def getFilePath():
 
     return files
 
+
 def openFile(file):
     workbook = openpyxl.load_workbook(file)
     sheet = workbook.active
@@ -44,7 +46,6 @@ def readSpreadsheet(sheet):
     plate, issued, returned, sales, rec = [], [], [], [], []
 
     row = 2
-    cols = ["A","B","C","D","E"]
 
     while sheet["A" + str(row)].value:
         plate.append(sheet["B" + str(row)].value)
@@ -57,8 +58,14 @@ def readSpreadsheet(sheet):
     return plate, issued, returned, sales, rec
 
 
-
-def loadData(files, allPlates, allIssued, allReturned, allSales, allReceptionist):
+def loadData(files,
+             allPlates,
+             allIssued,
+             allReturned,
+             allSales,
+             allReceptionist,
+             ):
+    
     for file in files:
         plate, issued, returned, sales, rec = openFile(file)
 
@@ -77,10 +84,7 @@ def isValidPlate(plate):
 
     plate = str(plate).strip().upper()
 
-    return (
-        re.match(r"^[A-Z]{3}$", plate[:3]) and
-        re.match(r"^[0-9]{3}$", plate[3:6])
-    )
+    return bool(re.fullmatch(r"[A-Z]{3}[0-9]{3}", plate))
 
 
 # Filter valid plates and keep data aligned
@@ -129,7 +133,8 @@ def convertTime(s):
     s %= 3600
     m = s // 60
     s %= 60
-    return d,h,m,s
+    return d, h, m, s
+
 
 # Generate plate report
 def calculatePlateReport(allPlates, allIssued, allReturned):
@@ -154,7 +159,12 @@ def calculatePlateReport(allPlates, allIssued, allReturned):
     return report
 
 # Generate sales report
-def calculateSalesReport(allPlates, allIssued, allReturned, allSales, allReceptionist):
+def calculateSalesReport(allPlates,
+                         allIssued,
+                         allReturned,
+                         allSales,
+                         allReceptionist,
+                         ):
     report = []
     processed = []
     for i in range(len(allSales)):
@@ -188,7 +198,7 @@ def generateOutstandingReport(allPlates, allIssued, allReturned, allSales):
             salesperson = allSales[i]
             if returned is None:
                 found = True
-                file.write("Plate: " + plate + "\n")
+                file.write("Plate: " + str(plate) + "\n")
                 file.write("Issued by: " + salesperson + "\n")
                 file.write("Issued Date:" + str(issued) + "\n")
                 file.write("Status: NOT RETURNED\n")
@@ -206,29 +216,48 @@ def prepareData(files):
     allSales = []
     allReceptionist = []
 
-    allPlates, allIssued, allReturned, allSales, allReceptionist = loadData(
+    (
+        allPlates,
+        allIssued,
+        allReturned,
+        allSales,
+        allReceptionist
+    ) = loadData(
         files,
         allPlates,
         allIssued,
         allReturned,
         allSales,
-        allReceptionist
+        allReceptionist,
     )
 
-    allPlates, allIssued, allReturned, allSales, allReceptionist = removeDuplicates(
+    (
+        allPlates,
+        allIssued,
+        allReturned,
+        allSales,
+        allReceptionist,
+        _invalidPlates
+    ) = filterValidPlates(
+        allPlates,
+        allIssued,
+        allReturned,
+        allSales,
+        allReceptionist,
+    )
+
+    (
         allPlates,
         allIssued,
         allReturned,
         allSales,
         allReceptionist
-    )
-
-    allPlates, allIssued, allReturned, allSales, allReceptionist, invalidPlates = filterValidPlates(
+    ) = removeDuplicates(
         allPlates,
         allIssued,
         allReturned,
         allSales,
-        allReceptionist
+        allReceptionist,
     )
 
     return (
@@ -241,7 +270,12 @@ def prepareData(files):
 
 
 # Remove duplicate records
-def removeDuplicates(allPlates, allIssued, allReturned, allSales, allReceptionist):
+def removeDuplicates(allPlates,
+                     allIssued,
+                     allReturned,
+                     allSales,
+                     allReceptionist,
+                     ):
     i = 0
     while i < len(allPlates):
         j = i + 1

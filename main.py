@@ -11,6 +11,7 @@ from functions import (
     generateOutstandingReport,
 )
 
+
 def main():
     userOption = 0
     files = []
