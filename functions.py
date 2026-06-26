@@ -9,8 +9,13 @@ from config import get_report_path
 
 
 def displayMenu():
-    print("\n1-Load Files\n2-Plate Report\n3-Sales Report\n" +
-          "4-Outstanding Report\n5-Exit")
+    print(
+        "\n1-Load Files\n"
+        "2-Plate Report\n"
+        "3-Sales Report\n"
+        "4-Outstanding Report\n"
+        "5-Exit"
+    )
 
 
 def getFilePath():
@@ -65,7 +70,6 @@ def loadData(files,
              allSales,
              allReceptionist,
              ):
-    
     for file in files:
         plate, issued, returned, sales, rec = openFile(file)
 
@@ -280,11 +284,13 @@ def removeDuplicates(allPlates,
     while i < len(allPlates):
         j = i + 1
         while j < len(allPlates):
-            if (allPlates[i] == allPlates[j] and
-                allIssued[i] == allIssued[j] and
-                allReturned[i] == allReturned[j] and
-                allSales[i] == allSales[j] and
-                allReceptionist[i] == allReceptionist[j]):
+            if (
+                allPlates[i] == allPlates[j]
+                and allIssued[i] == allIssued[j]
+                and allReturned[i] == allReturned[j]
+                and allSales[i] == allSales[j]
+                and allReceptionist[i] == allReceptionist[j]
+            ):
                 del allPlates[j]
                 del allIssued[j]
                 del allReturned[j]
