@@ -1,4 +1,15 @@
 Outstanding Plates Report
 =========================
 
-No outstanding plates found.
+Plate: ABC128
+Issued by: Mike
+Issued Date:2026-03-27 15:00:00
+Status: NOT RETURNED
+Report generated at:2026-06-26 13:18:34.426486
+-------------------------
+Plate: ABC288
+Issued by: Victor
+Issued Date:2026-03-27 12:00:00
+Status: NOT RETURNED
+Report generated at:2026-06-26 13:18:34.426498
+-------------------------

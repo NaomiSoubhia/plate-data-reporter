@@ -1,2 +1,4 @@
 openpyxl
 pyinputplus
+pytest
+flake8

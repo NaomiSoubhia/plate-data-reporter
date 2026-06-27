@@ -15,3 +15,4 @@ OUTSTANDING_REPORT_FILE = "outstanding_report.txt"
 
 def get_report_path(filename):
     return os.path.join(REPORT_DIR, filename)
+

@@ -1,12 +1,30 @@
 stages:
   - validate
+  - lint
+  - test
 
 validate:
   stage: validate
   image: python:3.11
-
   before_script:
     - pip install -r requirements.txt
-
   script:
     - python -m compileall .
+
+lint:
+  stage: lint
+  image: python:3.11
+  before_script:
+    - pip install -r requirements.txt
+  script:
+    - flake8 .
+
+unit-tests:
+  stage: test
+  image: python:3.11
+  variables:
+    PYTHONPATH: .
+  before_script:
+    - pip install -r requirements.txt
+  script:
+    - pytest
